@@ -6,7 +6,6 @@ import com.fraud.bankingfraudengine.entity.Alert;
 import com.fraud.bankingfraudengine.entity.Transaction;
 import com.fraud.bankingfraudengine.repository.AlertRepository;
 import com.fraud.bankingfraudengine.repository.TransactionRepository;
-import com.fraud.bankingfraudengine.service.EmailService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -20,7 +19,6 @@ public class FraudDetectionService {
 
     private final AlertRepository alertRepository;
     private final TransactionRepository transactionRepository;
-    private final EmailService emailService;
     private final RestTemplate restTemplate = new RestTemplate();
 
     @Value("${fraud.high-amount-threshold}")
@@ -33,11 +31,9 @@ public class FraudDetectionService {
     }
 
     public FraudDetectionService(AlertRepository alertRepository,
-                                 TransactionRepository transactionRepository,
-                                 EmailService emailService) {
+                                 TransactionRepository transactionRepository) {
         this.alertRepository = alertRepository;
         this.transactionRepository = transactionRepository;
-        this.emailService = emailService;
     }
 
     public void evaluateTransaction(Transaction transaction) {
@@ -134,17 +130,12 @@ public class FraudDetectionService {
         // CREATE ALERT FOR HIGH RISK
 
         if ("HIGH_RISK".equals(transaction.getFraudStatus())) {
-
             Alert alert = new Alert();
             alert.setTransactionId(transaction.getTransactionId());
             alert.setRuleTriggered("HYBRID_ENGINE");
             alert.setRiskScore(finalScore);
             alert.setMessage(message.toString());
-
             alertRepository.save(alert);
-
-            // SEND EMAIL ALERT
-            emailService.sendFraudAlert(transaction);
         }
     }
 }
