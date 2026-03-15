@@ -1,0 +1,39 @@
+# ======================
+# Java / Spring Boot
+# ======================
+target/
+*.log
+*.class
+*.jar
+*.war
+
+# IntelliJ
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+
+# ======================
+# Node / React
+# ======================
+node_modules/
+build/
+
+# ======================
+# Environment Variables
+# ======================
+.env
+
+# ======================
+# Python ML
+# ======================
+__pycache__/
+*.pyc
+*.pkl
+
+# ======================
+# OS Files
+# ======================
+.DS_Store
+Thumbs.db
