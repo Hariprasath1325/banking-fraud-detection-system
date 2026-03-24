@@ -21,7 +21,9 @@ public class AuthController {
         this.jwtUtil = jwtUtil;
     }
 
-    //  REGISTER USER
+    // ===============================
+    // REGISTER USER (DEFAULT USER ROLE)
+    // ===============================
 
     @PostMapping("/register")
     public Map<String, String> register(@RequestBody Map<String, String> request) {
@@ -33,15 +35,18 @@ public class AuthController {
         User user = new User();
         user.setUsername(request.get("username"));
         user.setPassword(encoder.encode(request.get("password")));
-        user.setRole("USER");
+
+        // Always prefix with ROLE_
+        user.setRole("ROLE_USER");
 
         userRepository.save(user);
 
         return Map.of("message", "User registered successfully");
     }
 
-
+    // ===============================
     // LOGIN USER
+    // ===============================
 
     @PostMapping("/login")
     public Map<String, String> login(@RequestBody Map<String, String> request) {
@@ -56,9 +61,12 @@ public class AuthController {
 
         String token = jwtUtil.generateToken(
                 user.getUsername(),
-                user.getRole()
+                user.getRole()   // ROLE_ADMIN / ROLE_ANALYST / ROLE_USER
         );
 
-        return Map.of("token", token);
+        return Map.of(
+                "token", token,
+                "role", user.getRole()   // useful for frontend
+        );
     }
 }

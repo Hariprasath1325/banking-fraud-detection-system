@@ -125,7 +125,11 @@ export default function FraudAlerts() {
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginBottom: '3px' }}>
             <ShieldAlert size={20} color="#dc2626" />
             <h1 style={{ fontSize: '22px', fontWeight: '700', color: '#0f172a' }}>Fraud Alerts</h1>
+<<<<<<< HEAD
             <span style={{ background: '#dc2626', color: '#fff', fontSize: '11px', fontWeight: '700', padding: '2px 10px', borderRadius: '20px' }}>
+=======
+            <span style={{ background: '#fee2e2', color: '#dc2626', fontSize: '11px', fontWeight: '700', padding: '2px 10px', borderRadius: '20px', border: '1px solid #fca5a5' }}>
+>>>>>>> f9ff47d (Initial commit)
               {filtered.length} ACTIVE
             </span>
           </div>
@@ -141,7 +145,11 @@ export default function FraudAlerts() {
       </div>
 
       {/* Table Card */}
+<<<<<<< HEAD
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#f8fafc', border: '1px solid #fecaca', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 16px rgba(220,38,38,0.12)', minHeight: 0 }}>
+=======
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#ffffff', border: '1px solid #fecaca', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(220,38,38,0.08)', minHeight: 0 }}>
+>>>>>>> f9ff47d (Initial commit)
         {/* Status Bar */}
         <div style={{ padding: '10px 16px', borderBottom: '1px solid #fecaca', background: '#fff1f2', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
@@ -163,7 +171,11 @@ export default function FraudAlerts() {
           ) : (
             <table style={{ width: '100%', minWidth: '900px', borderCollapse: 'collapse' }}>
               <thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+<<<<<<< HEAD
                 <tr style={{ background: '#ffe4e6' }}>
+=======
+                <tr style={{ background: '#fff1f2' }}>
+>>>>>>> f9ff47d (Initial commit)
                   {['TX ID','Sender','Receiver','Amount','Fraud Score','Merchant','Device Trust','Velocity','Timestamp','Flagged']
                     .map(h => (
                       <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: '10px', fontWeight: '700', color: '#9f1239', letterSpacing: '0.6px', textTransform: 'uppercase', borderBottom: '2px solid #fecaca', whiteSpace: 'nowrap' }}>
@@ -182,8 +194,10 @@ export default function FraudAlerts() {
                 ) : paginated.map((tx, i) => {
                   const score  = getScore(tx)
                   const device = getDevice(tx)
+                  const rowBg  = i % 2 === 0 ? '#ffffff' : '#fff8f8'
                   return (
                     <tr key={i}
+<<<<<<< HEAD
                       style={{ background: ROW_BASE, borderLeft: '4px solid #991b1b', cursor: 'pointer', transition: 'background 0.15s', borderBottom: '1px solid #991b1b' }}
                       onMouseEnter={e => e.currentTarget.style.background = ROW_HOVER}
                       onMouseLeave={e => e.currentTarget.style.background = ROW_BASE}
@@ -203,6 +217,28 @@ export default function FraudAlerts() {
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: 'rgba(255,255,255,0.85)', fontWeight: '600' }}>{getVelocity(tx)}</td>
                       <td style={{ padding: '9px 12px', color: 'rgba(255,255,255,0.80)', fontSize: '11px', whiteSpace: 'nowrap' }}>{tx.timestamp ? new Date(tx.timestamp).toLocaleString('en-IN') : '—'}</td>
                       <td style={{ padding: '9px 12px', fontWeight: '800', fontSize: '12px', color: '#ffffff' }}>Yes</td>
+=======
+                      style={{ background: rowBg, borderLeft: '4px solid #fca5a5', cursor: 'pointer', transition: 'background 0.15s', borderBottom: '1px solid #fff1f2' }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#fff1f2'}
+                      onMouseLeave={e => e.currentTarget.style.background = rowBg}
+                      onClick={() => setSelected(tx)}
+                    >
+                      {/* All fonts red — visible on white background */}
+                      <td style={{ padding: '9px 12px', color: '#dc2626', fontFamily: 'JetBrains Mono, monospace', fontWeight: '800', fontSize: '12px', whiteSpace: 'nowrap' }}>{getId(tx)}</td>
+                      <td style={{ padding: '9px 12px', color: '#b91c1c', fontFamily: 'JetBrains Mono, monospace', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}>{getSender(tx)}</td>
+                      <td style={{ padding: '9px 12px', color: '#b91c1c', fontFamily: 'JetBrains Mono, monospace', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}>{getReceiver(tx)}</td>
+                      <td style={{ padding: '9px 12px', color: '#dc2626', fontWeight: '800', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', whiteSpace: 'nowrap' }}>{formatINR(tx.amount)}</td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontWeight: '700', fontSize: '12px', color: '#dc2626', whiteSpace: 'nowrap' }}>
+                        {score !== null ? Number(score).toFixed(2) : '—'}
+                      </td>
+                      <td style={{ padding: '9px 12px', color: '#b91c1c', fontSize: '12px', fontWeight: '600' }}>{getMerchant(tx)}</td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: '600', color: device !== null && device < 0.3 ? '#dc2626' : '#9f1239', whiteSpace: 'nowrap' }}>
+                        {device !== null ? Number(device).toFixed(3) : '—'}
+                      </td>
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#9f1239', fontWeight: '600' }}>{getVelocity(tx)}</td>
+                      <td style={{ padding: '9px 12px', color: '#9f1239', fontSize: '11px', fontWeight: '500', whiteSpace: 'nowrap' }}>{tx.timestamp ? new Date(tx.timestamp).toLocaleString('en-IN') : '—'}</td>
+                      <td style={{ padding: '9px 12px', fontWeight: '800', fontSize: '12px', color: '#dc2626' }}>Yes</td>
+>>>>>>> f9ff47d (Initial commit)
                     </tr>
                   )
                 })}
@@ -223,7 +259,11 @@ export default function FraudAlerts() {
                 { label: '‹', action: () => setPage(p => p - 1), disabled: page === 1 },
               ].map(({ label, action, disabled }) => (
                 <button key={label} onClick={action} disabled={disabled}
+<<<<<<< HEAD
                   style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #fecaca', background: disabled ? '#fff1f2' : '#ffffff', color: disabled ? '#fca5a5' : '#991b1b', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+=======
+                  style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #fecaca', background: disabled ? '#fff1f2' : '#ffffff', color: disabled ? '#fca5a5' : '#dc2626', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+>>>>>>> f9ff47d (Initial commit)
                   {label}
                 </button>
               ))}
@@ -236,7 +276,11 @@ export default function FraudAlerts() {
                 }
                 return (
                   <button key={p} onClick={() => setPage(p)}
+<<<<<<< HEAD
                     style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #fecaca', background: page === p ? '#dc2626' : '#ffffff', color: page === p ? '#ffffff' : '#991b1b', cursor: 'pointer', fontSize: '12px', fontWeight: page === p ? '700' : '400' }}>
+=======
+                    style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #fecaca', background: page === p ? '#dc2626' : '#ffffff', color: page === p ? '#ffffff' : '#dc2626', cursor: 'pointer', fontSize: '12px', fontWeight: page === p ? '700' : '400' }}>
+>>>>>>> f9ff47d (Initial commit)
                     {p}
                   </button>
                 )
@@ -246,7 +290,11 @@ export default function FraudAlerts() {
                 { label: '»', action: () => setPage(totalPages),  disabled: page === totalPages },
               ].map(({ label, action, disabled }) => (
                 <button key={label} onClick={action} disabled={disabled}
+<<<<<<< HEAD
                   style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #fecaca', background: disabled ? '#fff1f2' : '#ffffff', color: disabled ? '#fca5a5' : '#991b1b', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+=======
+                  style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #fecaca', background: disabled ? '#fff1f2' : '#ffffff', color: disabled ? '#fca5a5' : '#dc2626', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+>>>>>>> f9ff47d (Initial commit)
                   {label}
                 </button>
               ))}

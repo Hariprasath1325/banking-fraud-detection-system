@@ -55,6 +55,7 @@ public class SimulationService {
             int scenario = random.nextInt(3); // 0 SAFE, 1 MEDIUM, 2 HIGH
 
             if (scenario == 0) {
+
                 // SAFE SCENARIO
                 tx.setSimulationType("SAFE");
                 tx.setAmount(1000 + random.nextInt(10000));
@@ -62,13 +63,13 @@ public class SimulationService {
                 tx.setLocationMismatch(0);
                 tx.setVelocityLast24h(random.nextInt(2));
 
-                // 10% noise → behave like fraud
                 if (random.nextDouble() < 0.10) {
                     tx.setForeignTransaction(1);
                     tx.setLocationMismatch(1);
                 }
 
             } else if (scenario == 1) {
+
                 // MEDIUM SCENARIO
                 tx.setSimulationType("MEDIUM");
                 tx.setAmount(30000 + random.nextInt(40000));
@@ -76,13 +77,13 @@ public class SimulationService {
                 tx.setLocationMismatch(1);
                 tx.setVelocityLast24h(3 + random.nextInt(3));
 
-                // 10% noise → behave like safe
                 if (random.nextDouble() < 0.10) {
                     tx.setForeignTransaction(0);
                     tx.setLocationMismatch(0);
                 }
 
             } else {
+
                 // HIGH SCENARIO
                 tx.setSimulationType("HIGH");
                 tx.setAmount(70000 + random.nextInt(200000));
@@ -91,27 +92,25 @@ public class SimulationService {
                 tx.setLocationMismatch(1);
                 tx.setVelocityLast24h(5 + random.nextInt(5));
 
-                // 15% noise → behave like medium
                 if (random.nextDouble() < 0.15) {
                     tx.setReceiverAccountNumber("ACC" + (2000 + random.nextInt(50)));
                 }
             }
 
-            // ===============================
             // RANDOM MERCHANT CATEGORY
-            // ===============================
-
             String merchant =
                     merchantCategories[random.nextInt(merchantCategories.length)];
-
             tx.setMerchantCategory(merchant);
 
-            // ===============================
             // OTHER FRAUD FEATURES
-            // ===============================
-
             tx.setDeviceTrustScore(random.nextDouble());
             tx.setCardholderAge(18 + random.nextInt(50));
+
+            // ===============================
+            // SAVE FIRST TO GENERATE ID
+            // ===============================
+
+            tx = transactionRepository.save(tx);
 
             // ===============================
             // FRAUD DETECTION
@@ -123,6 +122,7 @@ public class SimulationService {
                 tx.setFlagged(true);
             }
 
+            // SAVE AGAIN WITH FRAUD RESULT
             transactionRepository.save(tx);
         }
     }

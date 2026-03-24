@@ -27,11 +27,19 @@ const getRiskStr = tx => {
 const formatINR = amount =>
   new Intl.NumberFormat('en-IN', { style: 'currency', currency: 'INR', maximumFractionDigits: 2 }).format(amount || 0)
 
+<<<<<<< HEAD
 // ✅ Same colors as filter buttons — dark solid with white fonts
 const ROW_THEME = {
   HIGH:   { base: '#dc2626', hover: '#b91c1c', border: '#991b1b' },
   MEDIUM: { base: '#d97706', hover: '#b45309', border: '#92400e' },
   SAFE:   { base: '#16a34a', hover: '#15803d', border: '#14532d' },
+=======
+// ✅ Normal white background — colored fonts only
+const ROW_FONT = {
+  HIGH:   { id: '#dc2626', text: '#b91c1c', muted: '#dc2626', amount: '#dc2626', score: '#dc2626', border: '#fca5a5' },
+  MEDIUM: { id: '#d97706', text: '#b45309', muted: '#d97706', amount: '#d97706', score: '#d97706', border: '#fde68a' },
+  SAFE:   { id: '#16a34a', text: '#15803d', muted: '#16a34a', amount: '#16a34a', score: '#16a34a', border: '#bbf7d0' },
+>>>>>>> f9ff47d (Initial commit)
 }
 
 // ─── Transaction Detail Modal ──────────────────────────────────────────────────
@@ -49,7 +57,10 @@ function TransactionModal({ tx, onClose }) {
       <div style={{ background: '#ffffff', borderRadius: '14px', border: '1px solid #cbd5e1', width: '580px', maxWidth: '95vw', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px rgba(0,0,0,0.2)' }}
         onClick={e => e.stopPropagation()}>
 
+<<<<<<< HEAD
         {/* Header */}
+=======
+>>>>>>> f9ff47d (Initial commit)
         <div style={{ padding: '18px 24px', borderBottom: '1px solid #e2e8f0', display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: '#f8fafc', borderRadius: '14px 14px 0 0' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
             {risk === 'SAFE' ? <CheckCircle size={18} color={riskColor} /> : <AlertTriangle size={18} color={riskColor} />}
@@ -65,7 +76,10 @@ function TransactionModal({ tx, onClose }) {
           </button>
         </div>
 
+<<<<<<< HEAD
         {/* Risk Banner */}
+=======
+>>>>>>> f9ff47d (Initial commit)
         <div style={{ margin: '16px 24px 0', padding: '12px 16px', background: riskBg, borderRadius: '8px', border: `1px solid ${riskColor}40`, display: 'flex', gap: '10px' }}>
           <Info size={15} color={riskColor} style={{ marginTop: '2px', minWidth: 15 }} />
           <div>
@@ -76,7 +90,6 @@ function TransactionModal({ tx, onClose }) {
           </div>
         </div>
 
-        {/* Details Grid */}
         <div style={{ padding: '16px 24px 24px' }}>
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px' }}>
             {[
@@ -147,9 +160,15 @@ export default function Transactions() {
 
   const getRiskBadge = tx => {
     const s = getRiskStr(tx)
+<<<<<<< HEAD
     if (s === 'HIGH')   return <span style={{ background: 'rgba(255,255,255,0.25)', color: '#fff', fontSize: '10px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.4px', border: '1px solid rgba(255,255,255,0.4)' }}>HIGH</span>
     if (s === 'MEDIUM') return <span style={{ background: 'rgba(255,255,255,0.25)', color: '#fff', fontSize: '10px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.4px', border: '1px solid rgba(255,255,255,0.4)' }}>MEDIUM</span>
     return <span style={{ background: 'rgba(255,255,255,0.25)', color: '#fff', fontSize: '10px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', letterSpacing: '0.4px', border: '1px solid rgba(255,255,255,0.4)' }}>SAFE</span>
+=======
+    if (s === 'HIGH')   return <span style={{ background: '#fee2e2', color: '#dc2626', fontSize: '10px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', border: '1px solid #fca5a5' }}>HIGH</span>
+    if (s === 'MEDIUM') return <span style={{ background: '#fef9c3', color: '#d97706', fontSize: '10px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', border: '1px solid #fde68a' }}>MEDIUM</span>
+    return <span style={{ background: '#dcfce7', color: '#16a34a', fontSize: '10px', fontWeight: '700', padding: '2px 8px', borderRadius: '4px', border: '1px solid #bbf7d0' }}>SAFE</span>
+>>>>>>> f9ff47d (Initial commit)
   }
 
   return (
@@ -193,9 +212,15 @@ export default function Transactions() {
       </div>
 
       {/* Table Card */}
+<<<<<<< HEAD
       <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#f8fafc', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.08)', minHeight: 0 }}>
         {/* Top Bar */}
         <div style={{ padding: '10px 16px', borderBottom: '1px solid #e2e8f0', background: '#f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+=======
+      <div style={{ flex: 1, display: 'flex', flexDirection: 'column', background: '#ffffff', border: '1px solid #e2e8f0', borderRadius: '12px', overflow: 'hidden', boxShadow: '0 2px 12px rgba(0,0,0,0.06)', minHeight: 0 }}>
+        {/* Top Bar */}
+        <div style={{ padding: '10px 16px', borderBottom: '1px solid #e2e8f0', background: '#f8fafc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+>>>>>>> f9ff47d (Initial commit)
           <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'JetBrains Mono, monospace', fontWeight: '600' }}>
             {filtered.length} TRANSACTIONS
           </span>
@@ -214,10 +239,17 @@ export default function Transactions() {
           ) : (
             <table style={{ width: '100%', minWidth: '1100px', borderCollapse: 'collapse' }}>
               <thead style={{ position: 'sticky', top: 0, zIndex: 2 }}>
+<<<<<<< HEAD
                 <tr style={{ background: '#e2e8f0' }}>
                   {['ID','Sender','Receiver','Amount','Timestamp','Risk','Fraud Score','Merchant','Foreign','Location','Device','Velocity','Age','Flagged']
                     .map(h => (
                       <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: '10px', fontWeight: '700', color: '#475569', letterSpacing: '0.6px', textTransform: 'uppercase', borderBottom: '2px solid #cbd5e1', whiteSpace: 'nowrap' }}>
+=======
+                <tr style={{ background: '#f1f5f9' }}>
+                  {['ID','Sender','Receiver','Amount','Timestamp','Risk','Fraud Score','Merchant','Foreign','Location','Device','Velocity','Age','Flagged']
+                    .map(h => (
+                      <th key={h} style={{ padding: '10px 12px', textAlign: 'left', fontSize: '10px', fontWeight: '700', color: '#64748b', letterSpacing: '0.6px', textTransform: 'uppercase', borderBottom: '2px solid #e2e8f0', whiteSpace: 'nowrap' }}>
+>>>>>>> f9ff47d (Initial commit)
                         {h}
                       </th>
                     ))}
@@ -232,11 +264,18 @@ export default function Transactions() {
                   </tr>
                 ) : paginated.map((tx, i) => {
                   const risk   = getRiskStr(tx)
+<<<<<<< HEAD
                   const rt     = ROW_THEME[risk] || ROW_THEME.SAFE
+=======
+                  const rf     = ROW_FONT[risk] || ROW_FONT.SAFE
+>>>>>>> f9ff47d (Initial commit)
                   const score  = getScore(tx)
                   const device = getDevice(tx)
+                  // Alternating plain white / very light grey background
+                  const rowBg  = i % 2 === 0 ? '#ffffff' : '#f8fafc'
                   return (
                     <tr key={i}
+<<<<<<< HEAD
                       style={{ background: rt.base, borderLeft: `4px solid ${rt.border}`, cursor: 'pointer', transition: 'background 0.15s', borderBottom: `1px solid ${rt.border}` }}
                       onMouseEnter={e => e.currentTarget.style.background = rt.hover}
                       onMouseLeave={e => e.currentTarget.style.background = rt.base}
@@ -265,6 +304,49 @@ export default function Transactions() {
                       <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: 'rgba(255,255,255,0.85)', fontWeight: '600' }}>{getVelocity(tx)}</td>
                       <td style={{ padding: '9px 12px', fontSize: '12px', color: 'rgba(255,255,255,0.85)', fontWeight: '600' }}>{tx.cardholderAge ?? '—'}</td>
                       <td style={{ padding: '9px 12px', fontSize: '12px', fontWeight: '800', color: tx.flagged ? '#fef08a' : '#ffffff' }}>
+=======
+                      style={{ background: rowBg, borderLeft: `4px solid ${rf.border}`, cursor: 'pointer', transition: 'background 0.15s', borderBottom: '1px solid #f1f5f9' }}
+                      onMouseEnter={e => e.currentTarget.style.background = '#f0f9ff'}
+                      onMouseLeave={e => e.currentTarget.style.background = rowBg}
+                      onClick={() => setSelected(tx)}
+                    >
+                      {/* ID — colored per risk */}
+                      <td style={{ padding: '9px 12px', color: rf.id, fontFamily: 'JetBrains Mono, monospace', fontWeight: '800', fontSize: '12px', whiteSpace: 'nowrap' }}>{getId(tx)}</td>
+                      {/* Sender */}
+                      <td style={{ padding: '9px 12px', color: rf.text, fontFamily: 'JetBrains Mono, monospace', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}>{getSender(tx)}</td>
+                      {/* Receiver */}
+                      <td style={{ padding: '9px 12px', color: rf.text, fontFamily: 'JetBrains Mono, monospace', fontWeight: '600', fontSize: '11px', whiteSpace: 'nowrap' }}>{getReceiver(tx)}</td>
+                      {/* Amount */}
+                      <td style={{ padding: '9px 12px', color: rf.amount, fontWeight: '800', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', whiteSpace: 'nowrap' }}>{formatINR(tx.amount)}</td>
+                      {/* Timestamp */}
+                      <td style={{ padding: '9px 12px', color: '#64748b', fontSize: '11px', whiteSpace: 'nowrap' }}>{tx.timestamp ? new Date(tx.timestamp).toLocaleString('en-IN') : '—'}</td>
+                      {/* Risk Badge */}
+                      <td style={{ padding: '9px 12px' }}>{getRiskBadge(tx)}</td>
+                      {/* Fraud Score */}
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontWeight: '700', fontSize: '12px', color: rf.score, whiteSpace: 'nowrap' }}>
+                        {score !== null ? Number(score).toFixed(2) : '—'}
+                      </td>
+                      {/* Merchant */}
+                      <td style={{ padding: '9px 12px', color: rf.text, fontSize: '12px', fontWeight: '600' }}>{getMerchant(tx)}</td>
+                      {/* Foreign */}
+                      <td style={{ padding: '9px 12px', fontSize: '12px', fontWeight: '700', color: tx.foreignTransaction === 1 ? '#d97706' : '#64748b' }}>
+                        {tx.foreignTransaction === 1 ? 'Yes' : 'No'}
+                      </td>
+                      {/* Location */}
+                      <td style={{ padding: '9px 12px', fontSize: '12px', fontWeight: '700', color: tx.locationMismatch === 1 ? '#d97706' : '#64748b' }}>
+                        {tx.locationMismatch === 1 ? 'Mismatch' : 'OK'}
+                      </td>
+                      {/* Device */}
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '11px', fontWeight: '600', color: device !== null && device < 0.3 ? '#dc2626' : '#64748b' }}>
+                        {device !== null ? Number(device).toFixed(3) : '—'}
+                      </td>
+                      {/* Velocity */}
+                      <td style={{ padding: '9px 12px', fontFamily: 'JetBrains Mono, monospace', fontSize: '12px', color: '#64748b', fontWeight: '600' }}>{getVelocity(tx)}</td>
+                      {/* Age */}
+                      <td style={{ padding: '9px 12px', fontSize: '12px', color: '#64748b', fontWeight: '600' }}>{tx.cardholderAge ?? '—'}</td>
+                      {/* Flagged */}
+                      <td style={{ padding: '9px 12px', fontSize: '12px', fontWeight: '800', color: tx.flagged ? '#dc2626' : '#16a34a' }}>
+>>>>>>> f9ff47d (Initial commit)
                         {tx.flagged ? 'Yes' : 'No'}
                       </td>
                     </tr>
@@ -277,7 +359,11 @@ export default function Transactions() {
 
         {/* Pagination */}
         {!loading && filtered.length > PAGE_SIZE && (
+<<<<<<< HEAD
           <div style={{ padding: '10px 16px', borderTop: '1px solid #e2e8f0', background: '#f1f5f9', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+=======
+          <div style={{ padding: '10px 16px', borderTop: '1px solid #e2e8f0', background: '#f8fafc', display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexShrink: 0 }}>
+>>>>>>> f9ff47d (Initial commit)
             <span style={{ fontSize: '12px', color: '#64748b', fontFamily: 'JetBrains Mono, monospace' }}>
               Showing {((page-1)*PAGE_SIZE)+1}–{Math.min(page*PAGE_SIZE, filtered.length)} of {filtered.length}
             </span>
@@ -287,7 +373,11 @@ export default function Transactions() {
                 { label: '‹', action: () => setPage(p => p-1), disabled: page === 1 },
               ].map(({ label, action, disabled }) => (
                 <button key={label} onClick={action} disabled={disabled}
+<<<<<<< HEAD
                   style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #cbd5e1', background: disabled ? '#f1f5f9' : '#ffffff', color: disabled ? '#cbd5e1' : '#64748b', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+=======
+                  style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #e2e8f0', background: disabled ? '#f8fafc' : '#ffffff', color: disabled ? '#cbd5e1' : '#64748b', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+>>>>>>> f9ff47d (Initial commit)
                   {label}
                 </button>
               ))}
@@ -300,7 +390,11 @@ export default function Transactions() {
                 }
                 return (
                   <button key={p} onClick={() => setPage(p)}
+<<<<<<< HEAD
                     style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #cbd5e1', background: page === p ? '#0284c7' : '#ffffff', color: page === p ? '#ffffff' : '#64748b', cursor: 'pointer', fontSize: '12px', fontWeight: page === p ? '700' : '400' }}>
+=======
+                    style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #e2e8f0', background: page === p ? '#0284c7' : '#ffffff', color: page === p ? '#ffffff' : '#64748b', cursor: 'pointer', fontSize: '12px', fontWeight: page === p ? '700' : '400' }}>
+>>>>>>> f9ff47d (Initial commit)
                     {p}
                   </button>
                 )
@@ -310,7 +404,11 @@ export default function Transactions() {
                 { label: '»', action: () => setPage(totalPages), disabled: page === totalPages },
               ].map(({ label, action, disabled }) => (
                 <button key={label} onClick={action} disabled={disabled}
+<<<<<<< HEAD
                   style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #cbd5e1', background: disabled ? '#f1f5f9' : '#ffffff', color: disabled ? '#cbd5e1' : '#64748b', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+=======
+                  style={{ width: 30, height: 30, borderRadius: '6px', border: '1px solid #e2e8f0', background: disabled ? '#f8fafc' : '#ffffff', color: disabled ? '#cbd5e1' : '#64748b', cursor: disabled ? 'not-allowed' : 'pointer', fontSize: '13px' }}>
+>>>>>>> f9ff47d (Initial commit)
                   {label}
                 </button>
               ))}

@@ -41,12 +41,13 @@ public class JwtFilter extends OncePerRequestFilter {
                 String username = jwtUtil.extractUsername(token);
                 String role = jwtUtil.extractRole(token);
 
+                // 🔥 FIX: DO NOT add ROLE_ again
                 UsernamePasswordAuthenticationToken authentication =
                         new UsernamePasswordAuthenticationToken(
                                 username,
                                 null,
                                 Collections.singletonList(
-                                        new SimpleGrantedAuthority("ROLE_" + role)
+                                        new SimpleGrantedAuthority(role)
                                 )
                         );
 

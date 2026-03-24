@@ -15,7 +15,8 @@ public class User {
 
     private String password;
 
-    private String role; // ADMIN or USER
+    // IMPORTANT: Must store values like ROLE_ADMIN, ROLE_ANALYST, ROLE_USER
+    private String role;
 
     public User() {}
 

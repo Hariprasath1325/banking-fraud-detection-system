@@ -5,6 +5,7 @@ import {
   Activity, ShieldAlert, ShieldCheck, TrendingUp,
   RefreshCw, AlertTriangle, BarChart2, CheckCircle, Bell, X, Info
 } from 'lucide-react'
+import { useAuth } from '../context/AuthContext'
 
 const PIE_COLORS = ['#059669', '#ea580c', '#dc2626']
 
@@ -53,6 +54,7 @@ function TransactionModal({ tx, onClose }) {
   const device = getDevice(tx)
 
   return (
+<<<<<<< HEAD
     <div style={{ position: 'fixed', inset: 0, zIndex: 2000, background: 'rgba(15,23,42,0.7)', display: 'flex', alignItems: 'center', justifyContent: 'center', backdropFilter: 'blur(4px)' }}
       onClick={onClose}>
       <div style={{ background: '#ffffff', borderRadius: '14px', border: '1px solid rgba(220,38,38,0.3)', width: '560px', maxWidth: '95vw', maxHeight: '90vh', overflowY: 'auto', boxShadow: '0 24px 64px rgba(220,38,38,0.15)' }}
@@ -67,6 +69,43 @@ function TransactionModal({ tx, onClose }) {
             </div>
           </div>
           <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: '4px' }}
+=======
+    <div style={{
+      position: 'fixed', inset: 0, zIndex: 2000,
+      background: 'rgba(15,23,42,0.7)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center',
+      backdropFilter: 'blur(4px)',
+    }} onClick={onClose}>
+      <div style={{
+        background: '#ffffff', borderRadius: '14px',
+        border: '1px solid rgba(220,38,38,0.3)',
+        width: '560px', maxWidth: '95vw',
+        maxHeight: '90vh', overflowY: 'auto',
+        boxShadow: '0 24px 64px rgba(220,38,38,0.15)',
+      }} onClick={e => e.stopPropagation()}>
+
+        {/* Header */}
+        <div style={{
+          padding: '18px 24px',
+          borderBottom: '1px solid rgba(220,38,38,0.2)',
+          background: 'rgba(220,38,38,0.05)',
+          borderRadius: '14px 14px 0 0',
+          display: 'flex', justifyContent: 'space-between', alignItems: 'center',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <AlertTriangle size={18} color="#dc2626" />
+            <div>
+              <div style={{ fontWeight: '700', fontSize: '15px', color: '#0f172a' }}>
+                Fraud Alert — TX #{getId(tx)}
+              </div>
+              <div style={{ fontSize: '12px', color: '#64748b' }}>
+                {tx.timestamp ? new Date(tx.timestamp).toLocaleString('en-IN') : '—'}
+              </div>
+            </div>
+          </div>
+          <button onClick={onClose}
+            style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8', padding: '4px' }}
+>>>>>>> f9ff47d (Initial commit)
             onMouseEnter={e => e.currentTarget.style.color = '#dc2626'}
             onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}>
             <X size={18} />
@@ -74,11 +113,26 @@ function TransactionModal({ tx, onClose }) {
         </div>
 
         {/* Fraud Reason */}
+<<<<<<< HEAD
         <div style={{ margin: '16px 24px 0', padding: '12px 16px', background: 'rgba(220,38,38,0.06)', borderRadius: '8px', border: '1px solid rgba(220,38,38,0.2)', display: 'flex', gap: '10px' }}>
           <Info size={15} color="#dc2626" style={{ marginTop: '2px', minWidth: 15 }} />
           <div>
             <div style={{ fontSize: '12px', fontWeight: '700', color: '#dc2626', marginBottom: '4px' }}>⚠ FRAUD REASON</div>
             <div style={{ fontSize: '12px', color: '#374151', lineHeight: '1.7' }}>{tx.message || 'High risk transaction detected.'}</div>
+=======
+        <div style={{
+          margin: '16px 24px 0', padding: '12px 16px',
+          background: 'rgba(220,38,38,0.06)', borderRadius: '8px',
+          border: '1px solid rgba(220,38,38,0.2)',
+          display: 'flex', gap: '10px',
+        }}>
+          <Info size={15} color="#dc2626" style={{ marginTop: '2px', minWidth: 15 }} />
+          <div>
+            <div style={{ fontSize: '12px', fontWeight: '700', color: '#dc2626', marginBottom: '4px' }}>⚠ FRAUD REASON</div>
+            <div style={{ fontSize: '12px', color: '#374151', lineHeight: '1.7' }}>
+              {tx.message || 'High risk transaction detected.'}
+            </div>
+>>>>>>> f9ff47d (Initial commit)
           </div>
         </div>
 
@@ -119,8 +173,12 @@ function AlertDropdown({ alerts, onClose, onSelectTx }) {
       background: '#ffffff', border: '1px solid #b8d9f0',
       borderRadius: '12px', width: '360px',
       boxShadow: '0 8px 32px rgba(0,0,0,0.15)',
+<<<<<<< HEAD
       overflow: 'hidden',
       maxHeight: '420px',
+=======
+      overflow: 'hidden', maxHeight: '420px',
+>>>>>>> f9ff47d (Initial commit)
       display: 'flex', flexDirection: 'column',
     }}>
       {/* Header */}
@@ -138,7 +196,12 @@ function AlertDropdown({ alerts, onClose, onSelectTx }) {
             {alerts.length > 0 ? `${alerts.length} New Fraud Alert${alerts.length > 1 ? 's' : ''}` : 'No New Alerts'}
           </span>
         </div>
+<<<<<<< HEAD
         <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}
+=======
+        <button onClick={onClose}
+          style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#94a3b8' }}
+>>>>>>> f9ff47d (Initial commit)
           onMouseEnter={e => e.currentTarget.style.color = '#dc2626'}
           onMouseLeave={e => e.currentTarget.style.color = '#94a3b8'}>
           <X size={15} />
@@ -198,7 +261,9 @@ function AlertDropdown({ alerts, onClose, onSelectTx }) {
   )
 }
 
+// ─── Main Dashboard ────────────────────────────────────────────────────────────
 export default function Dashboard() {
+<<<<<<< HEAD
   const [summary,       setSummary]       = useState(null)
   const [generating,    setGenerating]    = useState(false)
   const [loading,       setLoading]       = useState(true)
@@ -219,6 +284,24 @@ export default function Dashboard() {
       if (prevFlagged === null) {
         setPrevFlagged(allFlagged.length)
       }
+=======
+  const { isAdmin } = useAuth()
+
+  const [summary,      setSummary]      = useState(null)
+  const [generating,   setGenerating]   = useState(false)
+  const [loading,      setLoading]      = useState(true)
+  const [toast,        setToast]        = useState(null)
+  const [newAlerts,    setNewAlerts]    = useState([])
+  const [showDropdown, setShowDropdown] = useState(false)
+  const [selectedTx,   setSelectedTx]  = useState(null)
+
+  const fetchData = useCallback(async () => {
+    try {
+      const [sumRes] = await Promise.all([
+        api.get('/simulation/summary'),
+      ])
+      setSummary(sumRes.data)
+>>>>>>> f9ff47d (Initial commit)
     } catch (err) {
       console.error('Dashboard error:', err)
     } finally {
@@ -229,6 +312,7 @@ export default function Dashboard() {
   useEffect(() => { fetchData() }, [])
 
   const handleGenerate = async () => {
+<<<<<<< HEAD
   setGenerating(true)
 
   // ✅ Snapshot existing IDs before generating
@@ -267,8 +351,49 @@ export default function Dashboard() {
     setToast({ msg: '❌ Failed to generate transactions.', type: 'error' })
   } finally {
     setGenerating(false)
+=======
+    setGenerating(true)
+
+    // Snapshot existing flagged IDs before generating
+    let beforeIds = new Set()
+    try {
+      const before = await api.get('/simulation/flagged')
+      const beforeList = Array.isArray(before.data) ? before.data : []
+      beforeIds = new Set(beforeList.map(tx => tx.transactionId ?? tx.id))
+    } catch {}
+
+    try { await api.post('/simulation/generate?count=5') } catch {}
+
+    try {
+      const [sumRes, flaggedRes] = await Promise.all([
+        api.get('/simulation/summary'),
+        api.get('/simulation/flagged'),
+      ])
+      setSummary(sumRes.data)
+      const allFlagged = Array.isArray(flaggedRes.data) ? flaggedRes.data : []
+
+      // Find truly new fraud transactions by ID comparison
+      const newOnes = allFlagged.filter(tx => {
+        const id = tx.transactionId ?? tx.id
+        return !beforeIds.has(id)
+      })
+
+      if (newOnes.length > 0) {
+        setNewAlerts(prev => [...newOnes, ...prev])
+        setShowDropdown(true)
+      }
+
+      setToast({
+        msg: `✅ 5 transactions created${newOnes.length > 0 ? `, ${newOnes.length} fraud detected!` : '!'}`,
+        type: 'success',
+      })
+    } catch {
+      setToast({ msg: '❌ Failed to generate transactions.', type: 'error' })
+    } finally {
+      setGenerating(false)
+    }
+>>>>>>> f9ff47d (Initial commit)
   }
-}
 
   const s = extractSummary(summary)
 
@@ -291,8 +416,14 @@ export default function Dashboard() {
           </p>
         </div>
 
+<<<<<<< HEAD
         {/* Right side — Bell + Generate */}
         <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+=======
+        {/* Right side — Bell + Generate (Admin only) */}
+        <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+
+>>>>>>> f9ff47d (Initial commit)
           {/* Alert Bell */}
           <div style={{ position: 'relative' }}>
             <button
@@ -309,7 +440,10 @@ export default function Dashboard() {
               onMouseLeave={e => e.currentTarget.style.background = newAlerts.length > 0 ? 'rgba(220,38,38,0.06)' : '#ffffff'}
             >
               <Bell size={17} color={newAlerts.length > 0 ? '#dc2626' : '#64748b'} />
+<<<<<<< HEAD
               {/* Badge */}
+=======
+>>>>>>> f9ff47d (Initial commit)
               {newAlerts.length > 0 && (
                 <div style={{
                   position: 'absolute', top: -5, right: -5,
@@ -325,7 +459,10 @@ export default function Dashboard() {
               )}
             </button>
 
+<<<<<<< HEAD
             {/* Dropdown */}
+=======
+>>>>>>> f9ff47d (Initial commit)
             {showDropdown && (
               <AlertDropdown
                 alerts={newAlerts}
@@ -338,13 +475,25 @@ export default function Dashboard() {
             )}
           </div>
 
+<<<<<<< HEAD
           {/* Generate Button */}
           <button className="btn btn-primary" onClick={handleGenerate} disabled={generating}>
             <RefreshCw size={14} style={{ animation: generating ? 'spin 0.8s linear infinite' : 'none' }} />
             {generating ? 'Generating...' : 'Generate 5 Transactions'}
           </button>
+=======
+          {/* Generate Button — Admin only */}
+          {isAdmin && (
+            <button className="btn btn-primary" onClick={handleGenerate} disabled={generating}>
+              <RefreshCw size={14} style={{ animation: generating ? 'spin 0.8s linear infinite' : 'none' }} />
+              {generating ? 'Generating...' : 'Generate 5 Transactions'}
+            </button>
+          )}
+>>>>>>> f9ff47d (Initial commit)
         </div>
       </div>
+
+      
 
       {loading ? (
         <div className="loading-wrap">
@@ -353,7 +502,11 @@ export default function Dashboard() {
         </div>
       ) : (
         <>
+<<<<<<< HEAD
           {/* Stat Cards — removed Flagged, kept 4 cards */}
+=======
+          {/* Stat Cards */}
+>>>>>>> f9ff47d (Initial commit)
           <div className="grid-3 mb-16">
             <StatCard label="Total Transactions" value={s.total}  color="cyan"   icon={<Activity    size={32} />} />
             <StatCard label="Safe Transactions"  value={s.safe}   color="green"  icon={<ShieldCheck size={32} />} />
@@ -370,7 +523,7 @@ export default function Dashboard() {
               {s.total === 0 ? (
                 <div style={{ height: 260, display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--text-muted)', fontSize: '13px', flexDirection: 'column', gap: '8px' }}>
                   <BarChart2 size={32} color="#b8d9f0" />
-                  Click "Generate 5 Transactions" to load data
+                  {isAdmin ? 'Click "Generate 5 Transactions" to load data' : 'No transaction data available'}
                 </div>
               ) : (
                 <ResponsiveContainer width="100%" height={260}>
@@ -413,7 +566,11 @@ export default function Dashboard() {
         </>
       )}
 
+<<<<<<< HEAD
       {/* Transaction Detail Modal from alert click */}
+=======
+      {/* Transaction Detail Modal */}
+>>>>>>> f9ff47d (Initial commit)
       {selectedTx && <TransactionModal tx={selectedTx} onClose={() => setSelectedTx(null)} />}
 
       {toast && <Toast message={toast.msg} type={toast.type} onClose={() => setToast(null)} />}

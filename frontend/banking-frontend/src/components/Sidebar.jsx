@@ -3,7 +3,8 @@ import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext'
 import {
   LayoutDashboard, ArrowLeftRight, ShieldAlert,
-  BarChart3, Activity, LogOut, Zap, ChevronLeft, ChevronRight
+  BarChart3, Activity, LogOut, Zap, ChevronLeft, ChevronRight,
+  Shield, UserCheck,
 } from 'lucide-react'
 
 const navItems = [
@@ -15,9 +16,14 @@ const navItems = [
 ]
 
 export default function Sidebar({ collapsed, setCollapsed }) {
-  const { logout, user } = useAuth()
+  const { logout, user, role, isAdmin } = useAuth()
   const navigate = useNavigate()
   const w = collapsed ? 64 : 240
+
+  const roleLabel = isAdmin ? 'Admin' : 'Analyst'
+  const roleColor = isAdmin ? '#38bdf8' : '#6ee7b7'
+  const roleBg    = isAdmin ? 'rgba(56,189,248,0.12)' : 'rgba(110,231,183,0.12)'
+  const RoleIcon  = isAdmin ? Shield : UserCheck
 
   return (
     <aside style={{
@@ -28,8 +34,7 @@ export default function Sidebar({ collapsed, setCollapsed }) {
       height: '100vh', zIndex: 10,
       boxShadow: '2px 0 8px rgba(0,0,0,0.06)',
       transition: 'width 0.25s ease, min-width 0.25s ease',
-      overflow: 'hidden',
-      position: 'relative',
+      overflow: 'hidden', position: 'relative',
     }}>
       {/* Toggle Button */}
       <button
@@ -37,10 +42,8 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         style={{
           position: 'absolute', top: '50%', right: -12,
           transform: 'translateY(-50%)',
-          width: 24, height: 24,
-          borderRadius: '50%',
-          background: '#0284c7',
-          border: '2px solid #ffffff',
+          width: 24, height: 24, borderRadius: '50%',
+          background: '#0284c7', border: '2px solid #ffffff',
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           cursor: 'pointer', zIndex: 20,
           boxShadow: '0 2px 6px rgba(2,132,199,0.4)',
@@ -49,21 +52,13 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         onMouseEnter={e => e.currentTarget.style.background = '#0369a1'}
         onMouseLeave={e => e.currentTarget.style.background = '#0284c7'}
       >
-        {collapsed
-          ? <ChevronRight size={12} color="#fff" strokeWidth={3} />
-          : <ChevronLeft  size={12} color="#fff" strokeWidth={3} />}
+        {collapsed ? <ChevronRight size={12} color="#fff" strokeWidth={3} /> : <ChevronLeft size={12} color="#fff" strokeWidth={3} />}
       </button>
 
       {/* Logo */}
       <div style={{ padding: collapsed ? '20px 14px' : '22px 20px 18px', borderBottom: '1px solid #b8d9f0', transition: 'padding 0.25s' }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: collapsed ? 0 : 10, justifyContent: collapsed ? 'center' : 'flex-start' }}>
-          <div style={{
-            width: 34, height: 34, minWidth: 34,
-            background: 'linear-gradient(135deg, #0284c7, #1d4ed8)',
-            borderRadius: '9px', display: 'flex',
-            alignItems: 'center', justifyContent: 'center',
-            boxShadow: '0 2px 8px rgba(2,132,199,0.35)',
-          }}>
+          <div style={{ width: 34, height: 34, minWidth: 34, background: 'linear-gradient(135deg, #0284c7, #1d4ed8)', borderRadius: '9px', display: 'flex', alignItems: 'center', justifyContent: 'center', boxShadow: '0 2px 8px rgba(2,132,199,0.35)' }}>
             <Zap size={16} color="#ffffff" strokeWidth={2.5} />
           </div>
           {!collapsed && (
@@ -75,11 +70,29 @@ export default function Sidebar({ collapsed, setCollapsed }) {
         </div>
       </div>
 
-      {/* User */}
+      {/* User + Role */}
       {!collapsed && (
         <div style={{ padding: '12px 20px', borderBottom: '1px solid #b8d9f0', background: '#f0f8ff' }}>
-          <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '2px', fontWeight: '600' }}>Logged in as</div>
-          <div style={{ fontSize: '14px', fontWeight: '700', color: '#0284c7', whiteSpace: 'nowrap', overflow: 'hidden', textOverflow: 'ellipsis' }}>{user || 'admin'}</div>
+          <div style={{ fontSize: '11px', color: '#64748b', textTransform: 'uppercase', letterSpacing: '0.6px', marginBottom: '4px', fontWeight: '600' }}>Logged in as</div>
+          <div style={{ fontSize: '14px', fontWeight: '700', color: '#0284c7', marginBottom: '6px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>
+            {user || 'User'}
+          </div>
+          {/* Role Badge */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: '5px', background: roleBg, border: `1px solid ${roleColor}40`, borderRadius: '6px', padding: '3px 8px' }}>
+            <RoleIcon size={11} color={roleColor} />
+            <span style={{ fontSize: '11px', fontWeight: '700', color: roleColor, letterSpacing: '0.3px' }}>
+              {roleLabel}
+            </span>
+          </div>
+        </div>
+      )}
+
+      {/* Collapsed role indicator */}
+      {collapsed && (
+        <div style={{ display: 'flex', justifyContent: 'center', padding: '10px 0', borderBottom: '1px solid #b8d9f0' }}>
+          <div style={{ width: 28, height: 28, borderRadius: '7px', background: roleBg, display: 'flex', alignItems: 'center', justifyContent: 'center' }} title={roleLabel}>
+            <RoleIcon size={14} color={roleColor} />
+          </div>
         </div>
       )}
 
