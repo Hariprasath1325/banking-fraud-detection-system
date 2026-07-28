@@ -12,7 +12,7 @@ This project demonstrates how modern banking systems can monitor transactions, c
  
 User / Admin
 ↓
-Frontend (React.js)
+Frontend (React.js) 
 ↓
 Backend API (Spring Boot)
 ↓
