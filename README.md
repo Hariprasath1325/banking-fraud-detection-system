@@ -5,7 +5,7 @@
 The **Digital Banking Fraud Detection & Simulation Engine** is a full-stack system designed to simulate banking transactions and detect fraudulent activities in real time. The system combines **rule-based fraud detection** and **machine learning techniques** to analyze transactions and identify suspicious behavior.
 
 This project demonstrates how modern banking systems can monitor transactions, calculate fraud risk scores, and alert administrators when potentially fraudulent activity occurs.
- 
+  
 ---
 
 ## System Architecture
