@@ -9,7 +9,7 @@ This project demonstrates how modern banking systems can monitor transactions, c
 ---
 
 ## System Architecture
- 
+  
 User / Admin
 ↓
 Frontend (React.js) 
